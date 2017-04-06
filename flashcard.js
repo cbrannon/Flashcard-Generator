@@ -20,8 +20,9 @@ function ClozeCard(text, cloze) {
                 this.partial = cloze + ' does not exist in text';
             }
         }
-
+        
         this.clozeDeletion();
+
     } else {
         return new ClozeCard(text, cloze);
     }
