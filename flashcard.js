@@ -1,3 +1,24 @@
+// ES6 class constructors
+// class BasicCard {
+//     constructor (front, back) {
+//         this.front = front;
+//         this.back = back;
+//     }
+// }
+
+// class ClozeCard {
+//     constructor (fullText, cloze) {
+//         if (fullText.includes(cloze)) {
+//             this.fullText = fullText;
+//             this.cloze = cloze;
+//             this.partial = this.fullText.replace(this.cloze, '...');
+//         } else {
+//             console.log(cloze + ' does not exist in text')
+//         }
+//     }
+// }
+
+// Constructors without the need for new 
 function BasicCard(front, back) {
     if (this instanceof BasicCard) {
         this.front = front;
@@ -7,28 +28,22 @@ function BasicCard(front, back) {
     }  
 }
 
-function ClozeCard(text, cloze) {
+function ClozeCard(fullText, cloze) {
     if (this instanceof ClozeCard) {
-        this.text = text;
-        this.cloze = cloze;
-        this.partial;
-
-        this.clozeDeletion = () => {
-            if (text.includes(cloze)) {
-                this.partial = text.replace(cloze, '...');
-            } else {
-                this.partial = cloze + ' does not exist in text';
-            }
+        if (fullText.includes(cloze)) {
+            this.fullText = fullText;
+            this.cloze = cloze;
+            this.partial = this.fullText.replace(this.cloze, '...');
+        } else {
+            console.log(cloze + ' does not exist in text')
         }
-        
-        this.clozeDeletion();
-
     } else {
-        return new ClozeCard(text, cloze);
+        return new ClozeCard(fullText, cloze);
     }
 }
 
 var georgeWashington = BasicCard("Who had wooden teeth?", "George Washington");
 var georgeCloze = ClozeCard("George Washington was old", "George Washington");
 
+console.log(georgeWashington);
 console.log(georgeCloze);
