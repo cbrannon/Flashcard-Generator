@@ -1,8 +1,4 @@
 {
-    "basic_cards": {
-
-    },
-    "cloze_cards": {
-        
-    }
+    "basic_cards":[],
+    "cloze_cards":[]
 }

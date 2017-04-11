@@ -4,7 +4,8 @@
   "description": "",
   "main": "flashcards.js",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "inquirer": "^3.0.6"
   },
   "devDependencies": {},
   "scripts": {

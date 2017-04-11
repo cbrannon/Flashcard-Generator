@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-var fs = require("fs");
+const fs = require("fs");
+const inquirer = require("inquirer");
 
 // ES6 class constructors
 // class BasicCard {
@@ -38,6 +39,7 @@ function ClozeCard(fullText, cloze) {
             this.fullText = fullText;
             this.cloze = cloze;
             this.partial = this.fullText.replace(this.cloze, '...');
+
         } else {
             console.log(cloze + ' does not exist in text')
         }
@@ -46,33 +48,55 @@ function ClozeCard(fullText, cloze) {
     }
 }
 
-var georgeWashington = BasicCard("Who had wooden teeth?", "George Washington");
-var georgeCloze = ClozeCard("George Washington was old", "George Washington");
+const georgeWashington = BasicCard("Who had wooden teeth?", "George Washington");
+const georgeCloze = ClozeCard("George Washington was old", "George Washington");
 
-app.get('/listCards', function (req, res) {
-    fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
+// app.get('/listCards', function (request, response) {
+//     fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
+//         console.log( data );
+//         res.end( data );
+//     });
+// });
+
+function getCards() {
+    fs.readFile("cards.json", 'utf8', function (err, data) {
         console.log( data );
-        res.end( data );
+        // res.end( data );
     });
-});
+}
 
-app.post('/addCard', function (req, res) {
-    // First read existing cards.
-    fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
+function setCard(card) {
+    fs.readFile( "cards.json", 'utf8', function (err, data) {
         data = JSON.parse( data );
-        data.cloze_cards["card1"] = JSON.stringify(georgeCloze);
-        console.log( data );
-        res.end( JSON.stringify(data));
+        console.log(data);
+        data.cloze_cards.push(card);
+        // console.log(data.length);
+        fs.writeFile( "cards.json", JSON.stringify(data));
+        // console.log( data );
+        // res.end( JSON.stringify(data));
     });
-});
+}
 
-var server = app.listen(8081, function () {
 
-  var host = server.address().address
-  var port = server.address().port
 
-  console.log("Example app listening at http://%s:%s", host, port)
+// app.post('/addCard', function (request, response) {
+//     // First read existing cards.
+//     fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
+//         data = JSON.parse( data );
+//         data.cloze_cards["card1"] = JSON.stringify(georgeCloze);
+//         console.log( data );
+//         res.end( JSON.stringify(data));
+//     });
+// });
 
-});
+// var server = app.listen(8081, function () {
 
-console.log(JSON.stringify(georgeCloze));
+//   var host = server.address().address
+//   var port = server.address().port
+
+//   console.log("Example app listening at http://%s:%s", host, port)
+
+// });
+
+console.log(georgeCloze);
+setCard(georgeCloze);
