@@ -65,10 +65,20 @@ function setCard(card, type) {
              data.basic_cards.push(card);
         }
         fs.writeFile( 'cards.json', JSON.stringify(data));
-        // console.log( data );
         // res.end( JSON.stringify(data));
     });
 }
+
+function deleteCards() {
+     fs.readFile( 'cards.json', 'utf8', function (err, data) {
+        data = JSON.parse( data );
+        data.basic_cards = [];
+        data.cloze_cards = [];
+        fs.writeFile( 'cards.json', JSON.stringify(data));
+        // res.end( JSON.stringify(data));
+    });
+}
+
 
 function inquireCommand() {
     inquirer.prompt([
@@ -98,6 +108,7 @@ function inquireCommand() {
                     inquireCreateCloze()
                     break;
                 case "Delete Cards":
+                    deleteCards();
                     break;
             }
         } else {
