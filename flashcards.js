@@ -64,7 +64,6 @@ function setCard(card, type) {
         } else {
              data.basic_cards.push(card);
         }
-        data.cloze_cards.push(card);
         fs.writeFile( 'cards.json', JSON.stringify(data));
         // console.log( data );
         // res.end( JSON.stringify(data));
@@ -90,10 +89,13 @@ function inquireCommand() {
         if (response.confirm) {
             switch (response.choice) {
                 case "Get cards":
+                    getCards()
                     break;
                 case "Create Basic Card":
+                    inquireCreateBasic();
                     break;
                 case "Create Cloze Card":
+                    inquireCreateCloze()
                     break;
                 case "Delete Cards":
                     break;
@@ -106,6 +108,70 @@ function inquireCommand() {
         throw error;
     })
 }
+
+function inquireCreateBasic() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What would you like the front of the card to be?",
+            name: "front"
+        },
+        {
+            type: "input",
+            message: "What would you like the back of the card to be?",
+            name: "back"
+        },
+         {
+            type: "confirm",
+            message: "Are you sure:",
+            name: "confirm",
+            default: true
+        }
+    ])
+    .then((response) => {
+        if (response.confirm) {
+            let card = BasicCard(response.front, response.back);
+        } else {
+            inquireCreateBasic();
+        }
+    })
+    .catch((error) => {
+        throw error;
+    })
+}
+
+function inquireCreateCloze() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What would you like the full text of the card to be?",
+            name: "fullText"
+        },
+        {
+            type: "input",
+            message: "What would you like the cloze of the card to be?",
+            name: "cloze"
+        },
+         {
+            type: "confirm",
+            message: "Are you sure:",
+            name: "confirm",
+            default: true
+        }
+    ])
+    .then((response) => {
+        if (response.confirm) {
+            let card = ClozeCard(response.fullText, response.cloze);
+        } else {
+            inquireCreateBasic();
+        }
+    })
+    .catch((error) => {
+        throw error;
+    })
+}
+
+inquireCommand();
 
 // app.get('/listCards', function (request, response) {
 //     fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
