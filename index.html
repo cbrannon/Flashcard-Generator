@@ -16,6 +16,14 @@
     <!-- Propeller css -->
     <link href="css/propeller.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- jQuery before Propeller.js -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/propeller.min.js"></script>
+    <script type="text/javascript" src="js/flashcards.js"></script>
   </head>
   
   <body>
@@ -25,17 +33,17 @@
             <div class="col-md-12 col-sm-12 text-center vcenter-item main">
                 <h1 class="pmd-display3" id="header">Flash Cards</h1>
                 <button data-target="#choose-card" data-toggle="modal" class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Create Card</button>
-                <button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Show Cards</button>
+                <button data-target="#show-cards" data-toggle="modal" class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Show Cards</button>
             </div>
         </div>
     </div>
 
-    <!-- List selection -->
+    <!--Choose card type modal-->
     <div tabindex="-1" class="modal fade" id="choose-card" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header pmd-modal-bordered"> 
-                    <h3 class="pmd-card-title-text">List Selection</h3>
+                    <h3 class="pmd-card-title-text">Card Type</h3>
                 </div>
                 <div class="modal-body">
                     <div class="radio">
@@ -57,6 +65,7 @@
         </div>
     </div>
 
+    <!--Create card modal-->
     <div tabindex="-1" class="modal fade" id="create-card" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -69,12 +78,10 @@
                         <div class="form-group pmd-textfield pmd-textfield-floating-label">
                             <label for="card-front">Front</label>
                             <input type="text" class="mat-input form-control" id="first-arg" value="">
-                            <span class="help-text">Input is required!</span> 
                         </div>
                         <div class="form-group pmd-textfield pmd-textfield-floating-label">
                             <label for="card-back">Back</label>
                             <input type="text" class="mat-input form-control" id="second-arg" value="">
-                            <span class="help-text">Input is required!</span> 
                         </div>
                     </form>
                 </div>
@@ -86,11 +93,55 @@
         </div>
     </div>
 
-    <!-- jQuery before Propeller.js -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/propeller.min.js"></script>
+    <!--Show cards modal-->
+    <div tabindex="-1" class="modal fade" id="show-cards" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!--Fixed tab example -->
+                <div class="pmd-card pmd-z-depth">
+                    <div class="pmd-tabs pmd-tabs-bg">
+                        <div class="pmd-tab-active-bar"></div>
+                        <ul role="tablist" class="nav nav-tabs nav-justified">
+                            <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">All Cards</a></li>
+                            <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">Basic Cards</a></li>
+                            <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Cloze Cards</a></li>
+                        </ul>
+                    </div>
+                    <div class="pmd-card-body">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home-fixed">
+                                <!-- Striped table -->
+                                <div class="pmd-card pmd-z-depth">
+                                    <div class="table-responsive">
+                                        <!-- Table -->
+                                        <table class="table pmd-table table-striped table-mc-red">
+                                            <thead>
+                                                <tr>
+                                                <th>Front / Parial Text</th>
+                                                <th>Back / Full Text</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td data-title="Name">Giacomo Guilizzoni</td>
+                                                <td data-title="Code">JONEA140</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="about-fixed">
+                                
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="work-fixed">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--Fixed tab example end-->
+            </div>
+        </div>
+    </div>
   </body>
 </html>
