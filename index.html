@@ -23,6 +23,7 @@
     <div class="container">
         <div class="row vcenter">
             <div class="col-md-12 col-sm-12 text-center vcenter-item main">
+                <h1 class="pmd-display3" id="header">Flash Cards</h1>
                 <button data-target="#choose-card" data-toggle="modal" class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Create Card</button>
                 <button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Show Cards</button>
             </div>
@@ -39,12 +40,12 @@
                 <div class="modal-body">
                     <div class="radio">
                         <label class="pmd-radio">
-                            <input type="radio" name="inlineRadioOptions" id="basic-card" value="option1">
+                            <input type="radio" name="inlineRadioOptions" id="basic-card" value="basic">
                             <span for="basic-card">Basic Card</span> </label>
                     </div>
                     <div class="radio">
                         <label class="pmd-radio">
-                            <input type="radio" name="inlineRadioOptions" id="cloze-card" value="option1">
+                            <input type="radio" name="inlineRadioOptions" id="cloze-card" value="cloze">
                             <span for="cloze-card">Cloze Card</span> </label>
                     </div>
                 </div>
@@ -55,7 +56,6 @@
             </div>
         </div>
     </div>
-
 
     <div tabindex="-1" class="modal fade" id="create-card" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
