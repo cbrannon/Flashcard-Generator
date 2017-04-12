@@ -22,9 +22,47 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row vcenter">
-            <div class="col-md-12 col-sm-12 text-center vcenter-item">
-                <button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Create Card</button>
+            <div class="col-md-12 col-sm-12 text-center vcenter-item main">
+                <button data-target="#form-dialog" data-toggle="modal" class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Create Card</button>
                 <button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Show Cards</button>
+            </div>
+        </div>
+    </div>
+
+    <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header pmd-modal-bordered">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h2 class="pmd-card-title-text">Create Flash Card</h2>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                            <label for="first-name">Name</label>
+                            <input type="text" class="mat-input form-control" id="name" value="">
+                            <span class="help-text">Input is required!</span> </div>
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                            <label for="first-name">Email Address</label>
+                            <input type="text" class="mat-input form-control" id="email" value="">
+                        </div>
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                            <label for="first-name">Mobile No.</label>
+                            <input type="text" class="mat-input form-control" id="mobil" value="">
+                        </div>
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                            <label class="control-label">Message</label>
+                            <textarea required class="form-control"></textarea>
+                        </div>
+                        <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                            <input type="checkbox" value="">
+                            <span class="pmd-checkbox"> Accept Terms and conditions</span> </label>
+                    </form>
+                </div>
+                <div class="pmd-modal-action">
+                    <button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Save changes</button>
+                    <button data-dismiss="modal"  class="btn pmd-ripple-effect btn-default" type="button">Discard</button>
+                </div>
             </div>
         </div>
     </div>
