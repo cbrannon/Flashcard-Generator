@@ -1,5 +1,5 @@
-var express = require('express');
-var app = express();
+// var express = require('express');
+// var app = express();
 const fs = require('fs');
 const inquirer = require('inquirer');
 
@@ -65,7 +65,6 @@ function setCard(card, type) {
              data.basic_cards.push(card);
         }
         fs.writeFile( 'cards.json', JSON.stringify(data));
-        // res.end( JSON.stringify(data));
     });
 }
 
@@ -75,7 +74,6 @@ function deleteCards() {
         data.basic_cards = [];
         data.cloze_cards = [];
         fs.writeFile( 'cards.json', JSON.stringify(data));
-        // res.end( JSON.stringify(data));
     });
 }
 
@@ -184,6 +182,7 @@ function inquireCreateCloze() {
 
 inquireCommand();
 
+// Setup endpoint to receive list of all cards
 // app.get('/listCards', function (request, response) {
 //     fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
 //         console.log( data );
