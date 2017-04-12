@@ -23,13 +23,41 @@
     <div class="container">
         <div class="row vcenter">
             <div class="col-md-12 col-sm-12 text-center vcenter-item main">
-                <button data-target="#form-dialog" data-toggle="modal" class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Create Card</button>
+                <button data-target="#choose-card" data-toggle="modal" class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Create Card</button>
                 <button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button">Show Cards</button>
             </div>
         </div>
     </div>
 
-    <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
+    <!-- List selection -->
+    <div tabindex="-1" class="modal fade" id="choose-card" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header pmd-modal-bordered"> 
+                    <h3 class="pmd-card-title-text">List Selection</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="radio">
+                        <label class="pmd-radio">
+                            <input type="radio" name="inlineRadioOptions" id="basic-card" value="option1">
+                            <span for="basic-card">Basic Card</span> </label>
+                    </div>
+                    <div class="radio">
+                        <label class="pmd-radio">
+                            <input type="radio" name="inlineRadioOptions" id="cloze-card" value="option1">
+                            <span for="cloze-card">Cloze Card</span> </label>
+                    </div>
+                </div>
+                <div class="pmd-modal-action pmd-modal-bordered text-right">
+                    <button data-target="#create-card" data-toggle="modal" data-dismiss="modal" class="btn pmd-ripple-effect btn-primary pmd-btn-flat" type="button">Ok</button>
+                    <button data-dismiss="modal"  class="btn pmd-ripple-effect btn-default pmd-btn-flat" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" class="modal fade" id="create-card" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header pmd-modal-bordered">
@@ -39,24 +67,15 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                            <label for="first-name">Name</label>
-                            <input type="text" class="mat-input form-control" id="name" value="">
-                            <span class="help-text">Input is required!</span> </div>
-                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                            <label for="first-name">Email Address</label>
-                            <input type="text" class="mat-input form-control" id="email" value="">
+                            <label for="card-front">Front</label>
+                            <input type="text" class="mat-input form-control" id="first-arg" value="">
+                            <span class="help-text">Input is required!</span> 
                         </div>
                         <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                            <label for="first-name">Mobile No.</label>
-                            <input type="text" class="mat-input form-control" id="mobil" value="">
+                            <label for="card-back">Back</label>
+                            <input type="text" class="mat-input form-control" id="second-arg" value="">
+                            <span class="help-text">Input is required!</span> 
                         </div>
-                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                            <label class="control-label">Message</label>
-                            <textarea required class="form-control"></textarea>
-                        </div>
-                        <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-                            <input type="checkbox" value="">
-                            <span class="pmd-checkbox"> Accept Terms and conditions</span> </label>
                     </form>
                 </div>
                 <div class="pmd-modal-action">
