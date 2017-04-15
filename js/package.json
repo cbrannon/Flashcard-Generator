@@ -1,0 +1,27 @@
+{
+  "name": "flash-cards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "flashcards.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "inquirer": "^3.0.6",
+    "jquery": "^3.2.1",
+    "jsdom": "^9.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbrannon/Flashcard-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbrannon/Flashcard-Generator/issues"
+  },
+  "homepage": "https://github.com/cbrannon/Flashcard-Generator#readme"
+}

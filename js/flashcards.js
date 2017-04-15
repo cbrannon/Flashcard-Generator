@@ -1,9 +1,5 @@
-const express = require('express');
-const app = express();
 const fs = require('fs');
 const inquirer = require('inquirer');
-const path = require('path');
-const bodyParser = require('body-parser');
 
 // ES6 class constructors
 // class BasicCard {
@@ -54,13 +50,17 @@ function ClozeCard(fullText, cloze) {
 function getCards() {
     fs.readFile('cards.json', 'utf8', function (err, data) {
         let cardLibrary = JSON.parse( data );
-        cardLibrary.basic_cards.forEach(currentItem => {
-            console.log("Front: " + currentItem.front + " / " + " Back: " + currentItem.back);
-        });
+        if (cardLibrary.basic_cards.length == 0 && cardLibrary.cloze_cards.length == 0) {
+            console.log("There are currently no cards");
+        } else {
+            cardLibrary.basic_cards.forEach(currentItem => {
+                console.log("Front: " + currentItem.front + " / " + " Back: " + currentItem.back);
+            });
 
-        cardLibrary.cloze_cards.forEach(currentItem => {
-            console.log("Full Text: " + currentItem.fullText + " / " + " Partial: " + currentItem.partial);
-        });
+            cardLibrary.cloze_cards.forEach(currentItem => {
+                console.log("Full Text: " + currentItem.fullText + " / " + " Partial: " + currentItem.partial);
+            });
+        }
     });
 }
 
@@ -73,6 +73,7 @@ function setCard(card, type) {
              data.basic_cards.push(card);
         }
         fs.writeFile( 'cards.json', JSON.stringify(data));
+        getCards();
     });
 }
 
@@ -82,6 +83,7 @@ function deleteCards() {
         data.basic_cards = [];
         data.cloze_cards = [];
         fs.writeFile( 'cards.json', JSON.stringify(data));
+        console.log("All cards have been deleted.");
     });
 }
 
@@ -105,13 +107,13 @@ function inquireCommand() {
         if (response.confirm) {
             switch (response.choice) {
                 case "Get cards":
-                    getCards()
+                    getCards();
                     break;
                 case "Create Basic Card":
                     inquireCreateBasic();
                     break;
                 case "Create Cloze Card":
-                    inquireCreateCloze()
+                    inquireCreateCloze();
                     break;
                 case "Delete Cards":
                     deleteCards();
@@ -189,31 +191,3 @@ function inquireCreateCloze() {
 }
 
 inquireCommand();
-
-// Setup endpoint to receive list of all cards
-app.get('/listCards', function (request, response) {
-    fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
-        console.log( data );
-        res.end( data );
-    });
-});
-
-app.post('/addCard', function (request, response) {
-    // First read existing cards.
-    fs.readFile( __dirname + "/" + "cards.json", 'utf8', function (err, data) {
-        data = JSON.parse( data );
-        data.cloze_cards["card1"] = JSON.stringify(georgeCloze);
-        console.log( data );
-        res.end( JSON.stringify(data));
-    });
-});
-
-var server = app.listen(8081, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log("Example app listening at http://%s:%s", host, port)
-
-});
-
